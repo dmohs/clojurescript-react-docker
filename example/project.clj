@@ -1,3 +1,4 @@
+(def build-host (or (System/getenv "BUILD_HOST") "REPLACE-WITH-DOCKER-HOSTNAME-OR-IP"))
 (def build-dir-relative "target")
 
 (defproject dmohs/cljs-react-sample "0.1"
@@ -16,7 +17,7 @@
                                        :source-map true
                                        :source-map-timestamp true}
                                       :figwheel
-                                      {:websocket-host "dhost"
+                                      {:websocket-host ~build-host
                                        :on-jsload "dmohs.main/dev-reload"}}}}}
              :minimized {:cljsbuild
                          {:builds {:client {:compiler
